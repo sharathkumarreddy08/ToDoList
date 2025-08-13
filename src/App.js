@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import InputContainer from "./Components/InputContainer";
+import ItemsListCointainer from "./Components/ItemsListContainer";
+import CountList from "./Components/CountList";
 import './App.css';
 
 function App() {
+  const [todos,setTodos]=useState([]);
+  const addNewTodo =(newToDo) => {
+    setTodos([...todos,newToDo]);
+  };
+  const deleteToDo =(itemtobeDeleted) =>{
+    const filtertodo =todos.filter((item)=> item !== itemtobeDeleted)
+    setTodos(filtertodo);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{height:'100vh',backgroundColor:'blue', width:'100%'}}>
+      <div className="navbar">
+      <h2 style={{marginLeft:'35rem'}}>TODOLIST</h2>
+      <CountList itemCount={todos.length}/>
+      </div>
+      <InputContainer addNewTodo={addNewTodo} />
+      <ItemsListCointainer todos={todos} deleteToDo={deleteToDo}/>
     </div>
   );
 }
