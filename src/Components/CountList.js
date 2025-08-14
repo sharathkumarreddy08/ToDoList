@@ -1,4 +1,4 @@
-export default function({itemCount}){
+export default function CountList({itemCount}){
 return(
     <div>
         <h4>Total list of items - {itemCount}</h4>
